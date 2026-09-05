@@ -17,7 +17,6 @@ public class AuthController {
 
     @PostMapping("/login")
     public String login(@RequestBody LoginDto loginDto){
-        authService.login(loginDto);
-        return "Login successful";
+        return authService.login(loginDto);
     }
 }

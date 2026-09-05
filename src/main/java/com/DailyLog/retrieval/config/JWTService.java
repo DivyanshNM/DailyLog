@@ -19,6 +19,15 @@ public class JWTService {
                 .signWith(getKey())
                 .compact();
     }
+    public String extractEmail(String token){
+        return Jwts.parser()
+                .verifyWith(getKey())
+                .build()
+                .parseSignedClaims(token)
+                .getPayload()
+                .getSubject();
+    }
+
     private SecretKey getKey(){
         return Keys.hmacShaKeyFor(secret.getBytes());
     }

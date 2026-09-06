@@ -6,12 +6,13 @@ import com.DailyLog.retrieval.DTOs.ResponseUserDto;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -27,4 +28,11 @@ public class UserController {
         if(responseUserDto.isPresent()) return new ResponseEntity<>(responseUserDto.get(), HttpStatus.OK);
         else return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+//    @GetMapping("/me")
+//    public String me(){
+//        Authentication authentication=
+//                SecurityContextHolder.getContext().getAuthentication();
+//        assert authentication != null;
+//        return authentication.getName();
+//    }
 }

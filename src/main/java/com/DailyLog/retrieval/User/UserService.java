@@ -5,6 +5,8 @@ import com.DailyLog.retrieval.DTOs.ResponseUserDto;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,13 @@ public class UserService  {
             ResponseUserDto responseUserDto=new ResponseUserDto(userDto);
             return Optional.of(responseUserDto);
         }
+    }
+    public UserEntity getCurrentUser(){
+        Authentication authentication=
+                SecurityContextHolder.getContext().getAuthentication();
+        assert authentication != null;
+        String email=authentication.getName();
+        return userRepository.findByEmail(email).orElseThrow(()-> new RuntimeException("User Not Found"));
     }
 
 }

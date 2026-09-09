@@ -14,6 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Builder
 public class ConvoResponse {
+    private Long id;
     private LocalDateTime createdAt;
     @NotBlank
     private String content;

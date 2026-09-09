@@ -8,6 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -37,8 +38,28 @@ public class ConversationService {
             ConvoResponse temp=new ConvoResponse();
             temp.setContent(it.getContent());
             temp.setCreatedAt(it.getCreatedAt());
+            temp.setId(it.getId());
             ans.add(temp);
         }
         return ans;
+    }
+
+    public Optional<ConvoResponse> findById(Long id) {
+        Optional<ConversationEntity> conversationEntity=conversationRepository.findById(id);
+        if(conversationEntity.isPresent()){
+            ConvoResponse convoResponse=new ConvoResponse();
+            convoResponse.setCreatedAt(conversationEntity.get().getCreatedAt());
+            convoResponse.setId(conversationEntity.get().getId());
+            convoResponse.setContent(conversationEntity.get().getContent());
+            return Optional.of(convoResponse);
+        }
+        return Optional.empty();
+    }
+    public boolean deleteById(Long id){
+        boolean exists=conversationRepository.exitsById(id);
+        if(exists){
+            conversationRepository.deleteById(id);
+            return true;
+        }else return false;
     }
 }

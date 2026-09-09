@@ -7,4 +7,5 @@ import java.util.List;
 public interface ConversationRepository extends JpaRepository<ConversationEntity,Long> {
     List<ConversationEntity> findByUserId(Long userId);
 
+    boolean exitsById(Long id);
 }

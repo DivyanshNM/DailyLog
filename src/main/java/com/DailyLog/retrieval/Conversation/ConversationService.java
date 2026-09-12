@@ -5,10 +5,9 @@ import com.DailyLog.retrieval.DTOs.ConvoResponse;
 import com.DailyLog.retrieval.User.UserEntity;
 import com.DailyLog.retrieval.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.actuate.endpoint.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +25,7 @@ public class ConversationService {
         ConversationEntity conversationEntity=new ConversationEntity();
         conversationEntity.setContent(convoDto.getContent());
         conversationEntity.setUser(user);
+        conversationEntity.setCreatedAt(LocalDateTime.now());
         conversationRepository.save(conversationEntity);
         return true;
     }

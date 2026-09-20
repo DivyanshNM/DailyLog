@@ -25,6 +25,8 @@ public class ChatMessageEntity {
     private UserEntity userEntity;
 
     private String role;
+
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String content;
     private LocalDateTime createdAt;
 }

@@ -25,6 +25,6 @@ public class ConversationEntity {
     private UserEntity user;
 
     private LocalDateTime createdAt;
-    @Column(columnDefinition = "TEXT", nullable = false)
+    @Column(columnDefinition = "LONGTEXT", nullable = false)
     private String content;
 }

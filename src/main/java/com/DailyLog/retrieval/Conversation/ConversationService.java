@@ -4,6 +4,7 @@ import com.DailyLog.retrieval.DTOs.ConvoDto;
 import com.DailyLog.retrieval.DTOs.ConvoResponse;
 import com.DailyLog.retrieval.User.UserEntity;
 import com.DailyLog.retrieval.User.UserService;
+import org.jspecify.annotations.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ConversationService {
     @Autowired
     private UserService userService;
 
-    public boolean addConvo(ConvoDto convoDto){
+    public boolean addConvo(@NonNull ConvoDto convoDto){
         UserEntity user=userService.getCurrentUser();
         ConversationEntity conversationEntity=new ConversationEntity();
         conversationEntity.setContent(convoDto.getContent());

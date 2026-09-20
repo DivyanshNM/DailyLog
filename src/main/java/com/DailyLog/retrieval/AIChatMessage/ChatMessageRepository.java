@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ChatMessageRepository extends JpaRepository<ChatMessageEntity, Long > {
     List<ChatMessageEntity> findByCreatedAtBefore(LocalDateTime time);
+    List<ChatMessageEntity> findByUserEntityIdOrderByCreatedAtAsc(Long userId);
 }
